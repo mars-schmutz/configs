@@ -1,0 +1,16 @@
+return {
+    "neovim/nvim-lspconfig",
+    config = function()
+        local lspconfig = require('lspconfig')
+
+        -- Setup ruff-lsp server
+        lspconfig.ruff_lsp.setup({
+                init_options = {
+                    settings = {
+                        args = {},
+                    }
+                }
+            })
+    end
+}
+
