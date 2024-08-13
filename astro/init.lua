@@ -21,3 +21,7 @@ require "polish"
 -- custom settings
 vim.opt.mouse = "" -- disable mouse interaction
 vim.keymap.set("i", "jk", "<esc>")
+vim.o.tabstop = 8
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = false
