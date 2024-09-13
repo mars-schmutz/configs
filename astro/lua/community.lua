@@ -8,5 +8,7 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
+  { import = "astrocommunity.colorscheme.eldritch-nvim" },
+  { import = "astrocommunity.colorscheme.nordic-nvim" },
   -- import/override with your plugins folder
 }
