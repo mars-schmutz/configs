@@ -10,5 +10,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.colorscheme.eldritch-nvim" },
   { import = "astrocommunity.colorscheme.nordic-nvim" },
+  { import = "astrocommunity.colorscheme.cyberdream-nvim" },
+  { import = "astrocommunity.colorscheme.nightfox-nvim" },
   -- import/override with your plugins folder
 }
