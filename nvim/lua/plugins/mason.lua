@@ -1,39 +1,39 @@
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+
+-- Customize Mason plugins
+
+---@type LazySpec
 return {
-    -- mason.nvim
-    {
-        "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup({
-                -- your mason.nvim configuration here
-            })
-        end
+  -- use mason-lspconfig to configure LSP installations
+  {
+    "williamboman/mason-lspconfig.nvim",
+    -- overrides `require("mason-lspconfig").setup(...)`
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        -- add more arguments for adding more language servers
+      },
     },
-    
-    -- mason-lspconfig.nvim
-    {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim" },
-        config = function()
-            require("mason-lspconfig").setup({
-                -- your mason-lspconfig configuration here
-            })
-        end
+  },
+  -- use mason-null-ls to configure Formatters/Linter installation for null-ls sources
+  {
+    "jay-babu/mason-null-ls.nvim",
+    -- overrides `require("mason-null-ls").setup(...)`
+    opts = {
+      ensure_installed = {
+        "stylua",
+        -- add more arguments for adding more null-ls sources
+      },
     },
-
-    -- nvim-lspconfig
-    {
-        "neovim/nvim-lspconfig",
-        dependencies = { "williamboman/mason-lspconfig.nvim" },
-        config = function()
-            local lspconfig = require("lspconfig")
-
-            -- Example LSP servers setup
-            local servers = { "ruff_lsp", "rust_analyzer" }
-
-            for _, server in ipairs(servers) do
-                lspconfig[server].setup {}
-            end
-        end
-    }
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    -- overrides `require("mason-nvim-dap").setup(...)`
+    opts = {
+      ensure_installed = {
+        "python",
+        -- add more arguments for adding more debuggers
+      },
+    },
+  },
 }
-

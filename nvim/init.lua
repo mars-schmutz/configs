@@ -1,62 +1,29 @@
-vim.g.mapleader = " "
-vim.cmd("syntax on")
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
-vim.o.number = true
-vim.o.showcmd = true
-vim.o.cursorline = true
-vim.cmd("filetype plugin indent on")
-vim.o.wildmenu = true
-vim.o.lazyredraw = true
-vim.o.showmatch = true
-vim.o.incsearch = true
-vim.o.hlsearch = true
-vim.o.foldenable = true
-vim.o.foldlevelstart = 10
-vim.o.foldnestmax = 10
-vim.o.foldmethod = indent
--- disable autocomplete scratch preview window
---vim.opt.completeopt = vim.opt.completeopt - 'preview'
-
--- make sure to clear screen after exiting
-
--- disable mouse interaction
-vim.opt.mouse = ""
-
-vim.keymap.set("i", "jk", "<esc>")
-
--- plugin configs
-vim.g.coq_settings = {
-    auto_start = 'shut-up',
-}
-vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", { silent = true })
-
--- Old trouble.nvim keybinds?
--- vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
--- vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
--- vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
--- vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
--- vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-
--- Plugin stuff
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+-- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
+-- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
+local lazypath = vim.env.LAZY or vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+if not (vim.env.LAZY or (vim.uv or vim.loop).fs_stat(lazypath)) then
+  -- stylua: ignore
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-    {import = "plugins"}
-})
+-- validate that lazy is available
+if not pcall(require, "lazy") then
+  -- stylua: ignore
+  vim.api.nvim_echo({ { ("Unable to load lazy from: %s\n"):format(lazypath), "ErrorMsg" }, { "Press any key to exit...", "MoreMsg" } }, true, {})
+  vim.fn.getchar()
+  vim.cmd.quit()
+end
 
+require "lazy_setup"
+require "polish"
 
-vim.cmd.colorscheme "catppuccin"
+-- custom settings
+vim.opt.mouse = "" -- disable mouse interaction
+vim.keymap.set("i", "jk", "<esc>")
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = false
+vim.api.nvim_set_keymap("n", "<C-S-h>", "H", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-l>", "L", { noremap = true, silent = true })
