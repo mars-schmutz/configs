@@ -1,0 +1,15 @@
+# ~/.config/tmuxinator
+
+name: Web BBQ
+root: ~/work/web-bbq/
+
+windows:
+  - editor:
+  - backend:
+      root: ~/work/web-bbq/backend/
+      panes:
+        - source .venv/bin/activate && uvicorn main:app --reload
+  - frontend:
+      root: ~/work/web-bbq/frontend/
+      panes:
+        - npm run dev

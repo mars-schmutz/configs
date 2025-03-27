@@ -1,0 +1,5 @@
+name: farmframe
+root: ~/farmframe/
+windows:
+  - editor:
+  - shell:

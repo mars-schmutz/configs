@@ -1,0 +1,5 @@
+name: ontrack 
+root: ~/work/ontrack
+windows:
+  - editor:
+  - shell:

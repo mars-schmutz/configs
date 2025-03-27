@@ -1,0 +1,10 @@
+name: codegrinder
+root: ~/work/
+windows:
+  - editor:
+      layout: even-horizontal
+      panes:
+        - nvim codegrinder-assignments
+        - nvim codegrinder
+  - shell:
+      root: ~/work/codegrinder-assignments/
