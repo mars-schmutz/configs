@@ -24,6 +24,6 @@ vim.keymap.set("i", "jk", "<esc>")
 vim.o.tabstop = 4
 vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
-vim.o.expandtab = false
+vim.o.expandtab = true
 vim.api.nvim_set_keymap("n", "<C-S-h>", "H", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-S-l>", "L", { noremap = true, silent = true })
